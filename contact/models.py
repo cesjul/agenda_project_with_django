@@ -7,4 +7,7 @@ class Contact(models.Model):
     phone = models.CharField(max_length=50)
     email = models.EmailField(max_length=250)
     created_date = models.DateTimeField(default=timezone.now)
-    description = models.TimeField(blank=True)
+    description = models.TextField(blank=True)
+
+    def __str__(self) -> str:
+        return f'{self.first_name} {self.last_name}'
