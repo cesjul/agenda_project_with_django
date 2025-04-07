@@ -139,6 +139,11 @@ venv.bak/
 
 #Django static files
 static_files/
+static/
+
+#Django media files
+media/
+
 # Spyder project settings
 .spyderproject
 .spyproject
