@@ -144,6 +144,9 @@ static/
 #Django media files
 media/
 
+#Django local_settings
+project/local_settings.py
+
 # Spyder project settings
 .spyderproject
 .spyproject
