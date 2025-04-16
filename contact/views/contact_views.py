@@ -44,11 +44,22 @@ def search(request):
                'site_title': contacts_title,
                }
 
-    print(contact.query)
+    if contact.exists() == False:
+        return noresult(request, search_value)
 
     return render(
         request,
         'contact/index.html',
+        context
+    )
+
+def noresult(request, search):
+
+    context = {'search': search,}
+
+    return render(
+        request,
+        'contact/noresult.html',
         context
     )
 
