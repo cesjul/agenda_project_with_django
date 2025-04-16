@@ -5,6 +5,7 @@ app_name = 'contact'
 
 urlpatterns = [
     path('<int:contact_id>/', contact_views.contact, name='contact'),
+    path('search/', contact_views.search, name='search'),
     path('', contact_views.index, name='index'),
 
 ]
