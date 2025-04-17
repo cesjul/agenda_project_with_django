@@ -42,6 +42,7 @@ def search(request):
     contacts_title = f'Results for {search_value} |'
     context = {'contacts': contact,
                'site_title': contacts_title,
+               'search_value': search_value,
                }
 
     if contact.exists() == False:
