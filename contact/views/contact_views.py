@@ -2,12 +2,30 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from contact.models import Contact
 from django.http import Http404
+from django.core.paginator import Paginator
 
 def index(request):
     contact = Contact.objects.filter(show=True).order_by('-id')
     contacts_title = 'Contacts |'
-    context = {'contacts': contact,
+    
+    number_of_itens = request.GET.get('number-of-itens')
+
+    if number_of_itens == None or number_of_itens == '':
+        number_of_itens = 10
+
+    if int(number_of_itens) >= 20:
+        number_of_itens = 20
+    
+    if int(number_of_itens) <= 5:
+        number_of_itens = 5
+
+    paginator = Paginator(contact, number_of_itens)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {'page_obj': page_obj,
                'site_title': contacts_title,
+               'number_of_itens_': number_of_itens,
                }
 
     return render(
@@ -38,11 +56,26 @@ def search(request):
                     .filter(email__icontains=search_value) \
                     .order_by('-id')
 
+    number_of_itens = request.GET.get('number-of-itens')
+
+    if number_of_itens == None or number_of_itens == '':
+        number_of_itens = 10
+
+    if int(number_of_itens) >= 20:
+        number_of_itens = 20
+    
+    if int(number_of_itens) <= 5:
+        number_of_itens = 5
+
+    paginator = Paginator(contact, number_of_itens)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     contacts_title = f'Results for {search_value} |'
-    context = {'contacts': contact,
+    context = {'page_obj': page_obj,
                'site_title': contacts_title,
                'search_value': search_value,
+               'number_of_itens_': number_of_itens,
                }
 
     if contact.exists() == False:

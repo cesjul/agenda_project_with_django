@@ -1,0 +1,27 @@
+
+{% if page_obj %}
+<div class="pagination">
+    <span class="step-links">
+        <div class="page-grid number-of-itens" id="page-grid" style="display: grid; grid-template-rows: 1fr;gap: calc(var(--spacing) * 0.8);">
+            <p style="grid-row-start: 1;">Itens per page: {{ number_of_itens_ }}</p>
+            <p style="grid-row-start: 1;">Select:</p>
+            <p class="grid-item" style="grid-row-start: 1;"><a href="?number-of-itens=10&q={{ request.GET.q.strip }}">10</a></p>
+            <p class="grid-item" style="grid-row-start: 1;"><a href="?number-of-itens=15&q={{ request.GET.q.strip }}">15</a></p>
+            <p class="grid-item" style="grid-row-start: 1;"><a href="?number-of-itens=20&q={{ request.GET.q.strip }}">20</a></p>
+        </div>
+        {% if page_obj.has_previous %}
+        <a href="?page=1&q={{ request.GET.q.strip }}&number-of-itens={{number_of_itens_}}">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}&q={{ request.GET.q.strip }}&number_of_itens={{number_of_itens_}}">previous</a>
+        {% endif %}
+        
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+        
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}&q={{ request.GET.q.strip }}&number-of-itens={{number_of_itens_}}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}&q={{ request.GET.q.strip }}&number-of-itens={{number_of_itens_}}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}

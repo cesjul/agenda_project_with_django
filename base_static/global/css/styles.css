@@ -195,7 +195,17 @@
     text-decoration: none;
     display: block;
   }
-  
+
+  #page-grid .number-of-itens div {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: black;
+  }
+
+  .grid-item{
+    display: grid;
+  }
+
   .search {
     display: flex;
     justify-content: center;
