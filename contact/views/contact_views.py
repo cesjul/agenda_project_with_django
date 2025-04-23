@@ -14,8 +14,8 @@ def index(request):
         or number_of_itens.isdecimal() == False:
         number_of_itens = 10
 
-    if int(number_of_itens) >= 20:
-        number_of_itens = 20
+    if int(number_of_itens) > 20:
+        number_of_itens = 10
     
     if int(number_of_itens) <= 10:
         number_of_itens = 10
@@ -63,8 +63,8 @@ def search(request):
         or number_of_itens.isdecimal() == False:
         number_of_itens = 10
 
-    if int(number_of_itens) >= 20:
-        number_of_itens = 20
+    if int(number_of_itens) > 20:
+        number_of_itens = 10
     
     if int(number_of_itens) <= 10:
         number_of_itens = 10
