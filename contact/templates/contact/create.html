@@ -1,26 +1,25 @@
 {% extends "global/base.html" %}
 
 {% block content %}
-    <h1>
-        Create
-    </h1>
 
     <div class="form-wrapper">
  
         <h2>Contact</h2>
         
         <form 
-          action=""
+          action="{% url "contact:create" %}"
           method="POST"
           enctype="multipart/form-data"
         >
-    
-          <div class="form-content">
-            <div class="form-group">
-              <label for="id_first_name">LABEL</label>
-              <input type="text" name="first_name" maxlength="255" id="id_first_name">
-            </div>
-          </div>
+        {% csrf_token %}
+            {% for fields in form %}
+            <div class="form-content">
+                <div class="form-group">
+                    <label for="{{fields.id_for_label}}"> {{fields.label}} </label>
+                    {{ fields }}
+                </div>
+            </div> 
+            {% endfor %}
     
           <div class="form-content">
             <div class="form-group">
