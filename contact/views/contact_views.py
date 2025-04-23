@@ -10,14 +10,15 @@ def index(request):
     
     number_of_itens = request.GET.get('number-of-itens')
 
-    if number_of_itens == None or number_of_itens == '':
+    if number_of_itens == None or number_of_itens == '' \
+        or number_of_itens.isdecimal() == False:
         number_of_itens = 10
 
     if int(number_of_itens) >= 20:
         number_of_itens = 20
     
-    if int(number_of_itens) <= 5:
-        number_of_itens = 5
+    if int(number_of_itens) <= 10:
+        number_of_itens = 10
 
     paginator = Paginator(contact, number_of_itens)
     page_number = request.GET.get('page')
@@ -58,14 +59,15 @@ def search(request):
 
     number_of_itens = request.GET.get('number-of-itens')
 
-    if number_of_itens == None or number_of_itens == '':
+    if number_of_itens == None or number_of_itens == '' \
+        or number_of_itens.isdecimal() == False:
         number_of_itens = 10
 
     if int(number_of_itens) >= 20:
         number_of_itens = 20
     
-    if int(number_of_itens) <= 5:
-        number_of_itens = 5
+    if int(number_of_itens) <= 10:
+        number_of_itens = 10
 
     paginator = Paginator(contact, number_of_itens)
     page_number = request.GET.get('page')
@@ -89,7 +91,8 @@ def search(request):
 
 def noresult(request, search):
 
-    context = {'search': search,}
+    context = {'search': search,
+               'site_title': 'No results |'}
 
     return render(
         request,
