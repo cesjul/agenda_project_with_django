@@ -8,6 +8,7 @@ urlpatterns = [
     path('', contact_views.index, name='index'),
     #CRUD
     path('contact/<int:contact_id>/details/', contact_views.contact, name='contact'),
+    path('contact/<int:contact_id>/update/', contact_views.update, name='update'),
     path('contact/create/', contact_views.create, name='create'),
    
 ]
