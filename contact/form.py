@@ -12,15 +12,14 @@ class ContactForm(forms.ModelForm):
         })
     class Meta:
         model = Contact
-        fields = 'first_name', 'last_name', 'phone', 
+        fields = 'first_name', 'last_name', 'phone', \
+                 'email', 'description', 'category', \
 
     def clean(self) -> dict[str, Any]:
         first_name = self.cleaned_data.get('first_name')
         last_name = self.cleaned_data.get('last_name')
         
         if first_name.lower() == last_name.lower(): #type: ignore
-            print(first_name)
-            print(last_name)
             self.add_error(
                 'last_name',
                 ValidationError(
