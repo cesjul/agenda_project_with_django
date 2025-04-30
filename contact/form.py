@@ -10,11 +10,13 @@ class ContactForm(forms.ModelForm):
         self.fields['first_name'].widget.attrs.update({
             'placeholder': 'Your first name',
         })
+        
     class Meta:
         model = Contact
         fields = 'first_name', 'last_name', 'phone', \
                  'email', 'description', 'category', \
-
+                 'picture',
+    
     def clean(self) -> dict[str, Any]:
         first_name = self.cleaned_data.get('first_name')
         last_name = self.cleaned_data.get('last_name')
