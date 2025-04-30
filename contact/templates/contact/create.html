@@ -12,15 +12,18 @@
           enctype="multipart/form-data"
         >
         {% csrf_token %}
-            {% for fields in form %}
-            <div class="form-content">
+        <div class="form-content">
+              {% for fields in form %}
                 <div class="form-group">
                     <label for="{{fields.id_for_label}}"> {{fields.label}} </label>
                     {{ fields }}
                     {{ fields.errors }}
                 </div>
+                {% if fields.name == 'picture' and fields.value.url %}
+                  <img src="{{ fields.value.url }}" alt="">
+                {% endif %}
+                {% endfor %}
             </div> 
-            {% endfor %}
     
           <div class="form-content">
             <div class="form-group">

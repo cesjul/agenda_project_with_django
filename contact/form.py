@@ -4,13 +4,14 @@ from django.core.exceptions import ValidationError
 from django import forms
 
 class ContactForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self.fields['first_name'].widget.attrs.update({
-            'placeholder': 'Your first name',
-        })
-        
+    picture = forms.ImageField(
+        widget=forms.FileInput(
+            attrs={
+                'accept': 'image/*',
+            }
+        )
+    )
+    
     class Meta:
         model = Contact
         fields = 'first_name', 'last_name', 'phone', \
