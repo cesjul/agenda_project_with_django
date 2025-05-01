@@ -1,15 +1,17 @@
-from contact import views as contact_views
+from contact import views as views
 from django.urls import path
 
 app_name = 'contact'
 
 urlpatterns = [
-    path('search/', contact_views.search, name='search'),
-    path('', contact_views.index, name='index'),
+    path('search/', views.search, name='search'),
+    path('', views.index, name='index'),
     #CRUD
-    path('contact/<int:contact_id>/details/', contact_views.contact, name='contact'),
-    path('contact/<int:contact_id>/update/', contact_views.update, name='update'),
-    path('contact/<int:contact_id>/delete/', contact_views.delete, name='delete'),
-    path('contact/create/', contact_views.create, name='create'),
+    path('contact/<int:contact_id>/details/', views.contact, name='contact'),
+    path('contact/<int:contact_id>/update/', views.update, name='update'),
+    path('contact/<int:contact_id>/delete/', views.delete, name='delete'),
+    path('contact/create/', views.create, name='create'),
+    #USER
+    path('user/create/', views.register, name='register'),
    
 ]

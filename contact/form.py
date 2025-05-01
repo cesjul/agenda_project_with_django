@@ -1,9 +1,12 @@
 from typing import Any
 from contact.models import Contact
 from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django import forms
 
 class ContactForm(forms.ModelForm):
+
     picture = forms.ImageField(
         widget=forms.FileInput(
             attrs={
@@ -44,3 +47,42 @@ class ContactForm(forms.ModelForm):
             )
         
         return first_name_received
+    
+class RegistrationForm(UserCreationForm):
+    first_name = forms.CharField(
+        required=True,
+        min_length=2,
+
+    )
+
+    last_name = forms.CharField(
+        required=True,
+        min_length=2,
+        
+    )
+
+    email = forms.EmailField(
+        required=True
+    )
+
+
+    class Meta:
+        model = User
+        fields = (
+            'first_name', 'last_name', 'email',
+            'username', 'password1', 'password2',
+        )
+    
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        
+        if User.objects.filter(email=email).exists():
+            self.add_error(
+                'email',
+                ValidationError(
+                    'This email adress has already been registered, please, insert a new one',
+                    code='invalid'
+                )
+            )
+
+        return email
