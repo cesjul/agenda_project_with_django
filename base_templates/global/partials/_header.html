@@ -1,3 +1,19 @@
+<div class="user">
+    {% if user.is_authenticated %}
+    <h3>
+       <p> 
+            <a href="{% url "contact:login" %}">{{ user }}</a>
+       </p>
+    </h3>
+  
+{% else %}
+<h3>
+    <p>
+        <a href="{% url "contact:login" %}">Not logged</a>
+    </p>
+</h3>
+{% endif %}
+</div>
 <header class="header">
     <h1 class="header-heading">
         <a href="{% url "contact:index" %}" class="header-link">
