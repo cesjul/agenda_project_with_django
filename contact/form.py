@@ -128,6 +128,20 @@ class RegisterUpdateForm(forms.ModelForm):
             'username',
         )
     
+    def save(self, commit=True):
+        cleaned_data = self.cleaned_data
+        user = super().save(commit=False)
+
+        password = cleaned_data.get('passowrd1')
+
+        if password:
+            user.set_password(password)
+        
+        if commit:
+            user.save()
+        
+        return user
+    
     def clean(self) -> dict[str, Any]:
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
@@ -135,7 +149,7 @@ class RegisterUpdateForm(forms.ModelForm):
         if password1 or password2:
             if password1 != password2:
                 self.add_error('password2',
-                    ValidationError('Passwords must be equal')
+                    ValidationError('Passwords must be equal', code='invalid')
                 )
 
         return super().clean()
@@ -164,3 +178,5 @@ class RegisterUpdateForm(forms.ModelForm):
                 password_validation.validate_password(password1)
             except ValidationError as error:
                 self.add_error('password1', ValidationError(error))
+
+        return password1

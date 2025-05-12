@@ -38,7 +38,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             auth.login(request, user)
-            messages.success(request, 'Sucessfully logged in')
+            messages.success(request, f'Sucessfully logged in. Welcome {user}!')
             return redirect('contact:index')
         
         messages.error(request, 'User or passowrd invalid, please check and try again')
@@ -72,7 +72,7 @@ def user_update(request):
         'form': form,
         'site_title': 'Update User | ',
         }
-
+    
         return render(
             request,
             'contact/register.html',
@@ -101,9 +101,5 @@ def user_update(request):
     form.save()
     
 
-    return render(
-            request,
-            'contact/register.html',
-            context
-    )   
+    return redirect('contact:user_update')
     

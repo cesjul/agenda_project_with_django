@@ -2,14 +2,14 @@
     {% if user.is_authenticated %}
     <h3>
        <p> 
-            <a href="{% url "contact:login" %}">{{ user }}</a>
+            <a href="{% url "contact:login" %}"> 👤 {{ user }}</a>
        </p>
     </h3>
   
 {% else %}
 <h3>
     <p>
-        <a href="{% url "contact:login" %}">Not logged</a>
+        <a href="{% url "contact:login" %}"> 👤 Not logged</a>
     </p>
 </h3>
 {% endif %}
