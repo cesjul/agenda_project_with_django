@@ -12,6 +12,7 @@
         </p>
         {% else %}
           {% include "contact/partials/_userform.html" %}
+          <p>New here ? <a href="{% url "contact:register" %}" class="register-link register-p">Register now</a></p>
         {% endif %}
         
       </div>

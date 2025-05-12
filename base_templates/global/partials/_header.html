@@ -22,30 +22,20 @@
     </h1>
     <nav class="menu">
         <ul class="menu-list">
+            {% if user.is_authenticated %}
             <li class="menu-item">
                 <a href="{% url "contact:create" %}" class="menu-link">
                     Create
                 </a></li>
-            <li class="menu-item">
-                <a href="" class="menu-link">
-                    Link2
+                <li class="menu-item">
+                <a href="{% url "contact:user_update" %}" class="menu-link">
+                    Profile
                 </a></li>
-            <li class="menu-item">
-                <a href="" class="menu-link">
-
+            {% else %}
+                 <a href="{% url "contact:register" %}" class="menu-link">
+                    Register
                 </a></li>
-            <li class="menu-item">
-                <a href="" class="menu-link">
-
-                </a></li>
-            <li class="menu-item">
-                <a href="" class="menu-link">
-
-                </a></li>
-            <li class="menu-item">
-                <a href="" class="menu-link">
-
-                </a></li>
+            {% endif %}
         </ul>
     </nav>
     <div class="search">
