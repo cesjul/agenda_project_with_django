@@ -1,6 +1,7 @@
 {% extends "global/base.html" %}
-
+{% load static %}
 {% block content %}
+
     <div class="responsive-table">
         <table class="contacts-table">
             <caption class="table-caption">
@@ -17,36 +18,37 @@
             </thead>
             <tbody>
                 {% for contact in page_obj %}
-                    <tr class="table-row">
-                        <td class="table-cel">
-                            <a href="{% url "contact:contact" contact.id %}" 
-                            class="table-link">
-                                {{ contact.id }}
-                            </a>
-                        </td>
-                        <td class="table-cel">
-                            <a href="#" class="table-link">
-                                {{ contact.first_name }}
-                            </a>
-                        </td>
-                        <td class="table-cel">
-                            <a href="#" class="table-link">
-                                {{ contact.last_name }}
-                            </a>
-                        </td>
-                        <td class="table-cel">
-                            <a href="#" class="table-link">
-                                {{ contact.phone }}
-                            </a>
-                        </td>
-                        <td class="table-cel">
-                            <a href="#" class="table-link">
-                                {{ contact.email }}
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                <tr class="table-row">
+                    <td class="table-cel">
+                        <a href="{% url "contact:contact" contact.id %}" 
+                        class="table-link">
+                        {{ contact.id }}
+                    </a>
+                </td>
+                <td class="table-cel">
+                    <a href="#" class="table-link">
+                        {{ contact.first_name }}
+                    </a>
+                </td>
+                <td class="table-cel">
+                    <a href="#" class="table-link">
+                        {{ contact.last_name }}
+                    </a>
+                </td>
+                <td class="table-cel">
+                    <a href="#" class="table-link">
+                        {{ contact.phone }}
+                    </a>
+                </td>
+                <td class="table-cel">
+                    <a href="#" class="table-link">
+                        {{ contact.email }}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+       
 {% endblock content %}

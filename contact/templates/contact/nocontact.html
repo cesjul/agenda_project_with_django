@@ -1,0 +1,16 @@
+
+{% extends "global/base.html" %}
+{% load static %}
+{% block content %}
+<div class="noresult-div">
+    <p class="noresult-p">
+        You haven`t create any contacts yet, 
+        <a href="{% url "contact:create" %}" class="noresult-link">
+            click
+            here 
+            to create.
+        </a>
+    </p>
+    <img class="noresult-img" src="{% static "global/img/noresult.png" %}" alt="Nothing founded">
+</div>
+{% endblock content %}

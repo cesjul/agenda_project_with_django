@@ -381,3 +381,34 @@ div.form-wrapper p a.register-link:hover{
   background-color: rgb(217, 217, 224);
 
 }
+
+div.noresult-div{
+  display: flex;
+  flex-flow: column wrap;
+}
+
+div.noresult-div p.noresult-p{
+  text-align: center;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+div.noresult-div p.noresult-p a.noresult-link{
+  text-decoration: none;
+  color: rgb(6, 25, 138);
+  font-weight: 600;
+  border-radius: 0.4rem;
+  padding: 0.5rem;
+  transition: all 300ms ease-in-out;
+}
+
+div.noresult-div p.noresult-p a.noresult-link:hover{
+  color: rgb(6, 38, 179);
+  background-color: rgb(217, 217, 224);
+}
+
+div.noresult-div img.noresult-img{
+  max-width: 50%;
+  margin: 0 auto;
+}

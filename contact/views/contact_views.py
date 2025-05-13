@@ -5,7 +5,11 @@ from django.http import Http404
 from django.core.paginator import Paginator
 
 def index(request):
-    contact = Contact.objects.filter(show=True).order_by('-id')
+    contact = Contact.objects.filter(show=True, owner=request.user).order_by('-id')
+    
+    if contact.exists() == False:
+        return nocontact(request)
+
     contacts_title = 'Contacts |'
     
     number_of_itens = request.GET.get('number-of-itens')
@@ -98,6 +102,18 @@ def noresult(request, search):
         request,
         'contact/noresult.html',
         context
+    )
+
+def nocontact(request):
+
+    context = {
+        'site_title' : 'No contacts for your profile |'
+    }
+
+    return render(
+        request,
+        'contact/nocontact.html',
+        context,
     )
 
 def contact(request, contact_id):
