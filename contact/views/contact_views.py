@@ -5,9 +5,9 @@ from django.http import Http404
 from django.core.paginator import Paginator
 
 def index(request):
-    contact = Contact.objects.filter(show=True, owner=request.user).order_by('-id')
-    
-    if contact.exists() == False:
+    contact = Contact.objects.filter(show=True).order_by('-id')
+
+    if contact.exists() == False or request.user.is_authenticated is False:
         return nocontact(request)
 
     contacts_title = 'Contacts |'

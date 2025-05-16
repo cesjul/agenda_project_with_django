@@ -180,3 +180,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+#gunicorn folder
+gunicorn
+
+#gnix
+gninx
